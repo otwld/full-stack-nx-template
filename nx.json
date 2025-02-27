@@ -63,7 +63,8 @@
         "typecheckTargetName": "typecheck",
         "buildDepsTargetName": "build-deps",
         "watchDepsTargetName": "watch-deps"
-      }
+      },
+      "exclude": ["**/*-e2e/**/*"]
     }
   ],
   "targetDefaults": {
