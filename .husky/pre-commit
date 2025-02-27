@@ -1,0 +1,2 @@
+nx affected -t lint format --base=origin/main --parallel=5
+nx affected -t test --base=origin/main --parallel=5
