@@ -12,10 +12,23 @@
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
+    "baseUrl": ".",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2022"
+    "target": "es2022",
+    "paths": {
+      "@full-stack-nestjs-template/ng-cdk": ["libraries/ng-cdk/src/index.ts"],
+      "@full-stack-nestjs-template/ng-landing-page": [
+        "libraries/ng-landing-page/src/index.ts"
+      ],
+      "@full-stack-nestjs-template/ng-storybook": [
+        "libraries/ng-storybook/src/index.ts"
+      ],
+      "@full-stack-nestjs-template/storybook": [
+        "domains/design-system/src/index.ts"
+      ]
+    }
   }
 }

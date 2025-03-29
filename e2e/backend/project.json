@@ -9,6 +9,12 @@
       "options": {
         "passWithNoTests": true
       }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo skipped because e2e."
+      }
     }
   }
 }

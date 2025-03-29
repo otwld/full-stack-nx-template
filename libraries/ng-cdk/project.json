@@ -1,0 +1,29 @@
+{
+  "name": "ng-cdk",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libraries/ng-cdk/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libraries/ng-cdk/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libraries/ng-cdk/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libraries/ng-cdk/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

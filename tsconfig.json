@@ -6,5 +6,10 @@
     {
       "path": "./domains/dashboard-e2e"
     }
-  ]
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }
