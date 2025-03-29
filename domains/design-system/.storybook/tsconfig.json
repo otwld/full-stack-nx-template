@@ -1,0 +1,18 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+
+  },
+  "exclude": ["../**/*.spec.ts"],
+  "include": [
+    "../../../libraries/ng-*/**/*.stories.ts",
+    "../../../libraries/ng-*/**/*.stories.js",
+    "../../../libraries/ng-*/**/*.stories.jsx",
+    "../../../libraries/ng-*/**/*.stories.tsx",
+    "../../../libraries/ng-*/**/*.stories.mdx",
+    "*.js",
+    "*.ts"
+  ]
+}

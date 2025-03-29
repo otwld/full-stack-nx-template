@@ -1,0 +1,62 @@
+{
+  "name": "design-system",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "domains/design-system/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "implicitDependencies": ["ng-*"],
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libraries/ng-storybook/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libraries/ng-storybook/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libraries/ng-storybook/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "domains/design-system/.storybook",
+        "browserTarget": "design-system:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/design-system",
+        "configDir": "domains/design-system/.storybook",
+        "browserTarget": "design-system:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c domains/design-system/.storybook --url=http://localhost:4400"
+      }
+    }
+  }
+}
