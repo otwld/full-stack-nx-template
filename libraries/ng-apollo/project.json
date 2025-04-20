@@ -1,0 +1,36 @@
+{
+  "name": "ng-apollo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libraries/ng-apollo/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libraries/ng-apollo/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libraries/ng-apollo/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libraries/ng-apollo/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "libraries/ng-apollo",
+        "command": "graphql-codegen "
+      }
+    }
+  }
+}

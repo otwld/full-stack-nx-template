@@ -1,0 +1,20 @@
+{
+  "name": "nestjs-graphql",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libraries/nestjs-graphql/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libraries/nestjs-graphql",
+        "tsConfig": "libraries/nestjs-graphql/tsconfig.lib.json",
+        "packageJson": "libraries/nestjs-graphql/package.json",
+        "main": "libraries/nestjs-graphql/src/index.ts",
+        "assets": ["libraries/nestjs-graphql/*.md"]
+      }
+    }
+  }
+}
