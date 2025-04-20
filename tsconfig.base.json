@@ -6,7 +6,10 @@
     "emitDeclarationOnly": false,
     "importHelpers": true,
     "isolatedModules": true,
-    "lib": ["es2022"],
+    "lib": [
+      "es2022",
+      "esnext.asynciterable"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmitOnError": true,
@@ -19,16 +22,28 @@
     "strict": true,
     "target": "es2022",
     "paths": {
-      "@full-stack-nestjs-template/ng-cdk": ["libraries/ng-cdk/src/index.ts"],
+      "@full-stack-nestjs-template/nestjs-graphql": [
+        "libraries/nestjs-graphql/src/index.ts"
+      ],
+      "@full-stack-nestjs-template/ng-apollo": [
+        "libraries/ng-apollo/src/index.ts"
+      ],
+      "@full-stack-nestjs-template/ng-cdk": [
+        "libraries/ng-cdk/src/index.ts"
+      ],
       "@full-stack-nestjs-template/ng-landing-page": [
         "libraries/ng-landing-page/src/index.ts"
       ],
       "@full-stack-nestjs-template/ng-storybook": [
         "libraries/ng-storybook/src/index.ts"
       ],
+      "@full-stack-nestjs-template/sdk": [
+        "libraries/sdk/src/index.ts"
+      ],
       "@full-stack-nestjs-template/storybook": [
         "domains/design-system/src/index.ts"
       ]
-    }
+    },
+    "allowSyntheticDefaultImports": true
   }
 }
