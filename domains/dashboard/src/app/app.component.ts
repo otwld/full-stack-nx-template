@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SayHelloGQL } from '@full-stack-nestjs-template/ng-apollo';
+import { CreateUserGQL, GetUserByIdGQL } from '@agency-quest/ng-apollo';
+import { switchMap, tap } from 'rxjs';
 
 @Component({
   imports: [RouterModule],
@@ -10,9 +11,22 @@ import { SayHelloGQL } from '@full-stack-nestjs-template/ng-apollo';
 })
 export class AppComponent {
   title = 'dashboard';
-  sayHello = inject(SayHelloGQL);
+  createUserGQL = inject(CreateUserGQL);
+  getUserByIdGQL = inject(GetUserByIdGQL);
 
-  constructor() {
-    this.sayHello.fetch().subscribe()
+
+  addUser() {
+    const name = prompt('Username ?');
+    if (!name) return;
+
+    this.createUserGQL.mutate({ name }).pipe(
+        switchMap((user) => {
+          console.info('created user:', user);
+          return this.getUserByIdGQL.fetch({ id: '1' });
+        }),
+        tap((user) => {
+          console.info('user id 1:', user);
+        }),
+    ).subscribe();
   }
 }

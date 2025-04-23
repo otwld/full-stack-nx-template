@@ -17,27 +17,79 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-export type Query = {
-  __typename?: 'Query';
-  sayHello: Scalars['String']['output'];
+export type Mutation = {
+  __typename?: 'Mutation';
+  createUser: User;
 };
 
-export type SayHelloQueryVariables = Exact<{ [key: string]: never; }>;
+
+export type MutationCreateUserArgs = {
+  name: Scalars['String']['input'];
+};
+
+export type Query = {
+  __typename?: 'Query';
+  getUserById: User;
+};
 
 
-export type SayHelloQuery = { __typename?: 'Query', sayHello: string };
+export type QueryGetUserByIdArgs = {
+  id: Scalars['String']['input'];
+};
 
-export const SayHelloDocument = gql`
-    query sayHello {
-  sayHello
+export type User = {
+  __typename?: 'User';
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type GetUserByIdQueryVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type GetUserByIdQuery = { __typename?: 'Query', getUserById: { __typename?: 'User', id: string, name: string } };
+
+export type CreateUserMutationVariables = Exact<{
+  name: Scalars['String']['input'];
+}>;
+
+
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', id: string, name: string } };
+
+export const GetUserByIdDocument = gql`
+    query getUserById($id: String!) {
+  getUserById(id: $id) {
+    id
+    name
+  }
 }
     `;
 
   @Injectable({
     providedIn: 'root'
   })
-  export class SayHelloGQL extends Apollo.Query<SayHelloQuery, SayHelloQueryVariables> {
-    override document = SayHelloDocument;
+  export class GetUserByIdGQL extends Apollo.Query<GetUserByIdQuery, GetUserByIdQueryVariables> {
+    override document = GetUserByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const CreateUserDocument = gql`
+    mutation createUser($name: String!) {
+  createUser(name: $name) {
+    id
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateUserGQL extends Apollo.Mutation<CreateUserMutation, CreateUserMutationVariables> {
+    override document = CreateUserDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

@@ -2,7 +2,7 @@ import { DynamicModule, FactoryProvider, Module } from '@nestjs/common';
 import { GraphQLModule as NestJSGraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { mergeDeep } from '@full-stack-nestjs-template/sdk';
+// import { mergeDeep } from '@agency-quest/sdk';
 
 // Define default configuration for Apollo GraphQL
 const DEFAULT_GRAPHQL_CONFIG: ApolloDriverConfig = {
@@ -25,7 +25,8 @@ export class GraphQLModule {
       imports: [
         // Merge the provided options with the default configuration
         NestJSGraphQLModule.forRoot<ApolloDriverConfig>(
-          mergeDeep(DEFAULT_GRAPHQL_CONFIG, options ?? {}),
+            DEFAULT_GRAPHQL_CONFIG
+          // mergeDeep(DEFAULT_GRAPHQL_CONFIG, options ?? {}),
         ),
       ],
     };
@@ -45,10 +46,10 @@ export class GraphQLModule {
         NestJSGraphQLModule.forRootAsync<ApolloDriverConfig>({
           // Use the factory function to merge dynamic configuration
           useFactory: async (...args) =>
-            mergeDeep(
+            // mergeDeep(
               DEFAULT_GRAPHQL_CONFIG,
-              await optionsProvider.useFactory(...args),
-            ),
+              // await optionsProvider.useFactory(...args),
+            // ),
           inject: optionsProvider.inject || [], // Inject dependencies if needed
         }),
       ],

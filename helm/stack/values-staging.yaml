@@ -1,0 +1,84 @@
+# Values for agency-quest-stack in staging environment
+
+# Gateway configuration
+gateway:
+  imagePullSecrets:
+    - name: docker-registry
+  image:
+    repository: harbor.otwld.com/agency-quest/gateway
+    # This sets the pull policy for images.
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "dev"
+
+# MongoDB configuration
+mongodb:
+  enabled: true
+  fullnameOverride: mongodb
+  replicaSet:
+    enabled: true
+  auth:
+    enabled: true
+    rootPassword: "stagingRootPassword"
+    username: "stagingUser"
+    password: "stagingPassword"
+    database: "stagingDB"
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "1Gi"
+    requests:
+      cpu: "250m"
+      memory: "512Mi"
+  persistence:
+    enabled: true
+    size: "5Gi"
+    storageClass: "longhorn"
+  service:
+    type: ClusterIP
+    port: 27017
+
+# ClickHouse configuration
+clickhouse:
+  enabled: true
+  fullnameOverride: clickhouse
+  replicaCount: 1
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "2Gi"
+    requests:
+      cpu: "250m"
+      memory: "1Gi"
+  persistence:
+    enabled: true
+    size: "10Gi"
+    storageClass: "longhorn"
+  service:
+    type: ClusterIP
+    port: 9000
+
+# RabbitMQ configuration
+rabbitmq:
+  enabled: true
+  fullnameOverride: rabbitmq
+  replicaCount: 1
+  auth:
+    username: "stagingUser"
+    password: "stagingPassword"
+    erlangCookie: "stagingErlangCookie"
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "1Gi"
+    requests:
+      cpu: "250m"
+      memory: "512Mi"
+  persistence:
+    enabled: true
+    size: "2Gi"
+    storageClass: "longhorn"
+  service:
+    type: ClusterIP
+    port: 5672
+

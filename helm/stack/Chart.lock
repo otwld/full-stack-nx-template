@@ -1,0 +1,15 @@
+dependencies:
+- name: mongodb
+  repository: https://charts.bitnami.com/bitnami
+  version: 16.5.1
+- name: clickhouse
+  repository: https://charts.bitnami.com/bitnami
+  version: 9.1.0
+- name: rabbitmq
+  repository: https://charts.bitnami.com/bitnami
+  version: 15.5.3
+- name: gateway
+  repository: oci://harbor.otwld.com/agency-quest
+  version: 0.1.1
+digest: sha256:69d3fde2267e38e12d313fa4756c086dc541fda82b6ea625352769357cdd2162
+generated: "2025-04-21T12:37:14.09830027+08:00"

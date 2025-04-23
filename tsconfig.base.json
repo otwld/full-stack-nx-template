@@ -22,25 +22,31 @@
     "strict": true,
     "target": "es2022",
     "paths": {
-      "@full-stack-nestjs-template/nestjs-graphql": [
+      "@agency-quest/nestjs-graphql": [
         "libraries/nestjs-graphql/src/index.ts"
       ],
-      "@full-stack-nestjs-template/ng-apollo": [
+      "@agency-quest/nestjs-microservices": [
+        "libraries/nestjs-microservices/src/index.ts"
+      ],
+      "@agency-quest/nestjs-users-service": [
+        "microservices/users/src/index.ts"
+      ],
+      "@agency-quest/ng-apollo": [
         "libraries/ng-apollo/src/index.ts"
       ],
-      "@full-stack-nestjs-template/ng-cdk": [
+      "@agency-quest/ng-cdk": [
         "libraries/ng-cdk/src/index.ts"
       ],
-      "@full-stack-nestjs-template/ng-landing-page": [
+      "@agency-quest/ng-landing-page": [
         "libraries/ng-landing-page/src/index.ts"
       ],
-      "@full-stack-nestjs-template/ng-storybook": [
+      "@agency-quest/ng-storybook": [
         "libraries/ng-storybook/src/index.ts"
       ],
-      "@full-stack-nestjs-template/sdk": [
+      "@agency-quest/sdk": [
         "libraries/sdk/src/index.ts"
       ],
-      "@full-stack-nestjs-template/storybook": [
+      "@agency-quest/storybook": [
         "domains/design-system/src/index.ts"
       ]
     },

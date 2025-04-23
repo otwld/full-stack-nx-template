@@ -10,7 +10,7 @@ import {
   withEventReplay,
 } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
-import { provideApollo } from '@full-stack-nestjs-template/ng-apollo';
+import { provideApollo } from '@agency-quest/ng-apollo';
 import { InMemoryCache } from '@apollo/client';
 import { LocalStorageWrapper } from 'apollo3-cache-persist';
 import { WA_WINDOW } from '@ng-web-apis/common';

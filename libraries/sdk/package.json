@@ -1,5 +1,5 @@
 {
-  "name": "@full-stack-nestjs-template/sdk",
+  "name": "@agency-quest/sdk",
   "version": "0.0.1",
   "private": true,
   "type": "module",

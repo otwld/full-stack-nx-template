@@ -1,5 +1,5 @@
 {
-  "name": "@full-stack-nestjs-template/ng-storybook",
+  "name": "@agency-quest/ng-storybook",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^19.1.0",

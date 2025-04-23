@@ -1,5 +1,5 @@
 {
-  "name": "@full-stack-nestjs-template/source",
+  "name": "@agency-quest/source",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -23,6 +23,7 @@
     "@graphql-codegen/typescript-operations": "^4.6.0",
     "@nestjs/schematics": "^11.0.2",
     "@nestjs/testing": "^11.0.12",
+    "@nx-tools/nx-container": "^6.2.0",
     "@nx/angular": "20.6.4",
     "@nx/devkit": "20.6.4",
     "@nx/eslint": "20.6.4",
@@ -97,7 +98,10 @@
     "@nestjs/common": "^11.0.12",
     "@nestjs/core": "^11.0.12",
     "@nestjs/graphql": "^13.0.4",
+    "@nestjs/microservices": "11.0.20",
     "@nestjs/platform-express": "^11.0.12",
+    "amqp-connection-manager": "^4.1.14",
+    "amqplib": "^0.10.7",
     "@ng-web-apis/common": "^4.12.0",
     "apollo-angular": "^10.0.3",
     "apollo3-cache-persist": "^0.15.0",

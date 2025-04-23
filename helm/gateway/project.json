@@ -1,0 +1,12 @@
+{
+  "name": "helm-gateway",
+  "projectType": "library",
+  "root": "helm/gateway",
+  "sourceRoot": "helm/gateway",
+  "targets": {
+    "helm-lint": {},
+    "helm-package": {},
+    "helm-push": {}
+  },
+  "tags": []
+}

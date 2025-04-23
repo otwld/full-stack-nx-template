@@ -1,7 +1,10 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -14,7 +17,9 @@
       "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/tsconfig.storybook.json"
     ],
-    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+    "sharedGlobals": [
+      "{workspaceRoot}/.github/workflows/ci.yml"
+    ]
   },
   "nxCloudId": "67bcb02bf6401d71425b9baa",
   "plugins": [
@@ -67,7 +72,9 @@
         "buildDepsTargetName": "build-deps",
         "watchDepsTargetName": "watch-deps"
       },
-      "exclude": ["**/*-e2e/**/*"]
+      "exclude": [
+        "**/*-e2e/**/*"
+      ]
     },
     {
       "plugin": "@nx/storybook/plugin",
@@ -77,13 +84,25 @@
         "testStorybookTargetName": "test-storybook",
         "staticStorybookTargetName": "static-storybook"
       }
+    },
+    {
+      "plugin": "@nx-tools/nx-container",
+      "options": {
+        "defaultEngine": "docker",
+        "defaultRegistry": "harbor.otwld.com/agency-quest"
+      }
     }
   ],
   "targetDefaults": {
     "@angular-devkit/build-angular:application": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     },
     "@nx/eslint:lint": {
       "cache": true,
@@ -96,18 +115,47 @@
     },
     "@nx/vite:test": {
       "cache": true,
-      "inputs": ["default", "^production"]
+      "inputs": [
+        "default",
+        "^production"
+      ]
     },
     "e2e-ci--**/*": {
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build"
+      ]
     },
     "build-storybook": {
       "cache": true
     },
     "@nx/angular:ng-packagr-lite": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
+    },
+    "helm-lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "helm lint {projectRoot}"
+      }
+    },
+    "helm-package": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "helm package {projectRoot} --destination dist/{projectRoot}/"
+      }
+    },
+    "helm-push": {
+      "dependsOn": ["package"],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "helm push dist/{projectRoot}/* oci://harbor.otwld.com/agency-quest"
+      }
     },
     "@nx/js:tsc": {
       "cache": true,
