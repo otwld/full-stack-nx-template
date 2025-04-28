@@ -1,2 +1,2 @@
-export * from './app/users.contract'
-export * from './app/users.types';
+export * from './app/contract'
+export * from './app/entity';

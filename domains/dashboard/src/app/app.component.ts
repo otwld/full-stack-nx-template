@@ -14,7 +14,6 @@ export class AppComponent {
   createUserGQL = inject(CreateUserGQL);
   getUserByIdGQL = inject(GetUserByIdGQL);
 
-
   addUser() {
     const name = prompt('Username ?');
     if (!name) return;

@@ -1,6 +1,6 @@
 import {NestFactory} from '@nestjs/core';
 import {MicroserviceOptions, Transport} from '@nestjs/microservices';
-import {UsersModule} from './app/users.module';
+import {UsersModule} from './app/module';
 
 function safeEnv(key: string): string {
   const value = process.env[key];

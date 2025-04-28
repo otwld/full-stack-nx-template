@@ -1,0 +1,20 @@
+{
+  "name": "nestjs-mongodb",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libraries/nestjs-mongodb/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libraries/nestjs-mongodb",
+        "tsConfig": "libraries/nestjs-mongodb/tsconfig.lib.json",
+        "packageJson": "libraries/nestjs-mongodb/package.json",
+        "main": "libraries/nestjs-mongodb/src/index.ts",
+        "assets": ["libraries/nestjs-mongodb/*.md"]
+      }
+    }
+  }
+}

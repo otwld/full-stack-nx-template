@@ -5,3 +5,4 @@
 export * from "./is-object/is-object";
 export * from "./merge-deep/merge-deep";
 export * from './safe-env/safe-env';
+export * from './env/env';
