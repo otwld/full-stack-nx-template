@@ -1,4 +1,4 @@
-import {Field, ID, ObjectType} from "@nestjs/graphql";
+import { Field, GraphQLISODateTime, ID, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from "mongoose";
 
@@ -26,10 +26,10 @@ export class User {
   @Prop()
   password?: string;
 
-  @Field(() => Date)
+  @Field(() => GraphQLISODateTime)
   createdAt!: Date;
 
-  @Field(() => Date)
+  @Field(() => GraphQLISODateTime)
   updatedAt!: Date;
 }
 

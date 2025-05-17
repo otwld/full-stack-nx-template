@@ -10,6 +10,10 @@ export type ExtractContracts<TNamespace> = {
   [K in keyof TNamespace]: TNamespace[K];
 };
 
+type Serialized<T> = {
+  [K in keyof T]: T[K] extends Date ? string : T[K];
+};
+
 export function createRpcApi<
   Patterns extends Record<string, string>,
   Contracts extends Record<string, RpcContract>,
@@ -18,7 +22,7 @@ export function createRpcApi<
     [K in keyof Contracts]: (
       payload: Contracts[K]['Request'],
       mode?: 'send' | 'emit',
-    ) => Observable<Contracts[K]['Response']>;
+    ) => Observable<Serialized<Contracts[K]['Response']>>;
   };
 
   for (const key in patterns) {
@@ -26,7 +30,10 @@ export function createRpcApi<
       payload: any,
       mode: 'send' | 'emit' = 'send',
     ) => {
-      if (mode === 'send') return client.send(patterns[key], payload);
+      console.info(patterns[key]);
+      if (mode === 'send') {
+        return client.send(patterns[key], payload);
+      }
 
       return client.emit(patterns[key], payload);
     }) as any;

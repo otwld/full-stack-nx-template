@@ -1,5 +1,5 @@
 {
-  "name": "users",
+  "name": "ms-users",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "microservices/users/src",
   "projectType": "application",

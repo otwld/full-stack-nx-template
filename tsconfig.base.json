@@ -33,6 +33,7 @@
         "libraries/ng-landing-page/src/index.ts"
       ],
       "@agency-quest/ng-storybook": ["libraries/ng-storybook/src/index.ts"],
+      "@agency-quest/ng-testing": ["libraries/ng-testing/src/index.ts"],
       "@agency-quest/sdk": ["libraries/sdk/src/index.ts"],
       "@agency-quest/storybook": ["domains/design-system/src/index.ts"]
     },

@@ -12,13 +12,10 @@ import {
 
 @Injectable()
 export class UsersAPI {
-  private readonly api = createRpcApi<
+  public readonly emit = createRpcApi<
     typeof UsersPatterns,
     ExtractContracts<UsersContract>
   >(this.client, UsersPatterns);
 
   constructor(@Inject('USERS_SERVICE') private readonly client: ClientProxy) {}
-
-  getById = this.api.GetById;
-  create = this.api.Create;
 }

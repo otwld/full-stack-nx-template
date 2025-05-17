@@ -11,7 +11,7 @@ import { UsersAPI } from './users-api.service';
         transport: Transport.RMQ,
         options: {
           urls: [
-            'amqp://stagingUser:stagingPassword@rabbsitmq.agency-quest-staging.svc.cluster.local:5672',
+            'amqp://stagingUser:stagingPassword@rabbitmq.agency-quest-staging.svc.cluster.local:5672',
           ],
           queue: 'users_queue',
           queueOptions: {

@@ -14,6 +14,7 @@ import { isPlatformBrowser } from '@angular/common';
 export interface ApolloConfiguration {
   readonly link?: Options;
   readonly cache: ApolloCache<unknown>;
+  readonly ssr: boolean;
   readonly persistence?: {
     readonly initializer: boolean;
     readonly storage: () => PersistentStorage<string>;
@@ -29,7 +30,7 @@ export function provideApollo(config: ApolloConfiguration) {
 
       const apolloConfig: ApolloClientOptions<unknown> = {
         cache: config.cache,
-        ssrMode: !isBrowser,
+        ssrMode: config.ssr,
         devtools: {
           enabled: isBrowser,
         },

@@ -1,24 +1,29 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { UsersService } from './service';
-import { UsersContract } from './contract';
+import { UsersContract, UsersPatterns } from './contract';
 
 @Controller()
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @MessagePattern('create_user')
+  @MessagePattern('user_create')
   create(
     @Payload() payload: UsersContract['Create']['Request'],
-  ): UsersContract['Create']['Response'] {
+  ): Promise<UsersContract['Create']['Response']> {
     console.info('create_user:', payload);
     return this.usersService.create(payload);
   }
 
-  @MessagePattern('get_user_by_id')
+  @MessagePattern(UsersPatterns.GetAll)
+  getUsers(@Payload() payload: UsersContract['GetAll']['Request']) {
+    return this.usersService.findAll(payload);
+  }
+
+  @MessagePattern(UsersPatterns.GetById)
   getById(
     @Payload() payload: UsersContract['GetById']['Request'],
-  ): UsersContract['GetById']['Response'] {
+  ): Promise<UsersContract['GetById']['Response']> {
     console.info('get_user_by_id:', payload);
     return this.usersService.findOne(payload.id);
   }

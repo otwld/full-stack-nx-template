@@ -15,6 +15,13 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
+  DateTime: { input: any; output: any; }
+};
+
+export type CreateUserDto = {
+  email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 export type Mutation = {
@@ -24,11 +31,12 @@ export type Mutation = {
 
 
 export type MutationCreateUserArgs = {
-  name: Scalars['String']['input'];
+  createUserInput: CreateUserDto;
 };
 
 export type Query = {
   __typename?: 'Query';
+  getAllUsers: Array<User>;
   getUserById: User;
 };
 
@@ -39,8 +47,12 @@ export type QueryGetUserByIdArgs = {
 
 export type User = {
   __typename?: 'User';
-  id: Scalars['String']['output'];
+  _id: Scalars['ID']['output'];
+  createdAt: Scalars['DateTime']['output'];
+  email: Scalars['String']['output'];
+  isVerified: Scalars['Boolean']['output'];
   name: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type GetUserByIdQueryVariables = Exact<{
@@ -48,23 +60,39 @@ export type GetUserByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetUserByIdQuery = { __typename?: 'Query', getUserById: { __typename?: 'User', id: string, name: string } };
+export type GetUserByIdQuery = { __typename?: 'Query', getUserById: { __typename?: 'User', _id: string, name: string, email: string, isVerified: boolean, createdAt: any, updatedAt: any } };
+
+export type GetAllUsersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllUsersQuery = { __typename?: 'Query', getAllUsers: Array<{ __typename?: 'User', _id: string, name: string, email: string, isVerified: boolean, createdAt: any, updatedAt: any }> };
 
 export type CreateUserMutationVariables = Exact<{
-  name: Scalars['String']['input'];
+  createUserInput: CreateUserDto;
 }>;
 
 
-export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', id: string, name: string } };
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', _id: string, name: string, email: string, isVerified: boolean, createdAt: any, updatedAt: any } };
 
+export type UserFragment = { __typename?: 'User', _id: string, name: string, email: string, isVerified: boolean, createdAt: any, updatedAt: any };
+
+export const UserFragmentDoc = gql`
+    fragment User on User {
+  _id
+  name
+  email
+  isVerified
+  createdAt
+  updatedAt
+}
+    `;
 export const GetUserByIdDocument = gql`
     query getUserById($id: String!) {
   getUserById(id: $id) {
-    id
-    name
+    ...User
   }
 }
-    `;
+    ${UserFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
@@ -76,14 +104,31 @@ export const GetUserByIdDocument = gql`
       super(apollo);
     }
   }
-export const CreateUserDocument = gql`
-    mutation createUser($name: String!) {
-  createUser(name: $name) {
-    id
-    name
+export const GetAllUsersDocument = gql`
+    query getAllUsers {
+  getAllUsers {
+    ...User
   }
 }
-    `;
+    ${UserFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllUsersGQL extends Apollo.Query<GetAllUsersQuery, GetAllUsersQueryVariables> {
+    override document = GetAllUsersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const CreateUserDocument = gql`
+    mutation createUser($createUserInput: CreateUserDto!) {
+  createUser(createUserInput: $createUserInput) {
+    ...User
+  }
+}
+    ${UserFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'

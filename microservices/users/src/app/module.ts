@@ -3,6 +3,7 @@ import { UsersService } from './service';
 import { UsersController } from './controller';
 import { env, safeEnv } from '@agency-quest/sdk';
 import { MongooseModule } from '@nestjs/mongoose';
+import { User, UserSchema } from './entity';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       },
       authSource: env('MONGODB_AUTH_SOURCE'),
     }),
-    MongooseModule.forFeature([{name: UserEntity}])
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
   ],
   controllers: [UsersController],
   providers: [UsersService],

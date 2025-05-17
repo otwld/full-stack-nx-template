@@ -3,7 +3,6 @@ import nx from '@nx/eslint-plugin';
 
 export default [
   ...baseConfig,
-  ...baseConfig,
   ...nx.configs['flat/angular'],
   ...nx.configs['flat/angular-template'],
   {
@@ -23,6 +22,12 @@ export default [
           type: 'element',
           prefix: 'app',
           style: 'kebab-case',
+        },
+      ],
+      '@angular-eslint/component-class-suffix': [
+        'error',
+        {
+          suffixes: ['Component', 'Page', 'Dialog', 'Layout', 'Form'],
         },
       ],
     },
