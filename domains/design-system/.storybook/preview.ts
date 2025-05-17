@@ -1,3 +1,3 @@
-import { sbPreview } from '@full-stack-nestjs-template/ng-storybook';
+import { sbPreview } from '@agency-quest/ng-storybook';
 
 export const preview = sbPreview();

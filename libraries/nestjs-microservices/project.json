@@ -1,0 +1,20 @@
+{
+  "name": "nestjs-microservices",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libraries/nestjs-microservices/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libraries/nestjs-microservices",
+        "tsConfig": "libraries/nestjs-microservices/tsconfig.lib.json",
+        "packageJson": "libraries/nestjs-microservices/package.json",
+        "main": "libraries/nestjs-microservices/src/index.ts",
+        "assets": ["libraries/nestjs-microservices/*.md"]
+      }
+    }
+  }
+}

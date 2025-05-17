@@ -1,5 +1,5 @@
 {
-  "name": "@full-stack-nestjs-template/ng-cdk",
+  "name": "@agency-quest/ng-cdk",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^19.2.0",

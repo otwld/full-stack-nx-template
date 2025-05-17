@@ -12,7 +12,8 @@
       "!{projectRoot}/test-setup.[jt]s",
       "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
       "!{projectRoot}/.storybook/**/*",
-      "!{projectRoot}/tsconfig.storybook.json"
+      "!{projectRoot}/tsconfig.storybook.json",
+      "!{projectRoot}/jest.config.[jt]s"
     ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
@@ -30,7 +31,8 @@
           "buildDepsName": "build-deps",
           "watchDepsName": "watch-deps"
         }
-      }
+      },
+      "exclude": ["libraries/nestjs-mongodb/*"]
     },
     {
       "plugin": "@nx/playwright/plugin",
@@ -77,6 +79,28 @@
         "testStorybookTargetName": "test-storybook",
         "staticStorybookTargetName": "static-storybook"
       }
+    },
+    {
+      "plugin": "@nx-tools/nx-container",
+      "options": {
+        "defaultEngine": "docker",
+        "defaultRegistry": "harbor.otwld.com/agency-quest"
+      }
+    },
+    {
+      "plugin": "@nx/js/typescript",
+      "include": ["libraries/nestjs-mongodb/*"],
+      "options": {
+        "typecheck": {
+          "targetName": "typecheck"
+        }
+      }
+    },
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
     }
   ],
   "targetDefaults": {
@@ -108,6 +132,25 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
+    },
+    "helm-lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "helm lint {projectRoot}"
+      }
+    },
+    "helm-package": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "helm package {projectRoot} --destination dist/{projectRoot}/"
+      }
+    },
+    "helm-push": {
+      "dependsOn": ["package"],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "helm push dist/{projectRoot}/* oci://harbor.otwld.com/agency-quest"
+      }
     },
     "@nx/js:tsc": {
       "cache": true,

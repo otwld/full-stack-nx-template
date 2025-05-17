@@ -1,1 +1,16 @@
 <router-outlet></router-outlet>
+
+@if (users(); as result) {
+  @if (result.data; as users) {
+    <ul>
+      @for (user of users.getAllUsers; track user._id) {
+        <li>{{user.name}} - {{user.email}}</li>
+      }
+    </ul>
+  }
+  @if (result.loading) {
+    <p>Loading...</p>
+  }
+}
+
+<app-upsert-user-form/>

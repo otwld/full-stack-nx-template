@@ -1,0 +1,26 @@
+query getUserById($id: String!) {
+  getUserById(id: $id) {
+    ...User
+  }
+}
+
+query getAllUsers {
+  getAllUsers {
+    ...User
+  }
+}
+
+mutation createUser($createUserInput: CreateUserDto!) {
+  createUser(createUserInput: $createUserInput) {
+    ...User
+  }
+}
+
+fragment User on User {
+  _id
+  name
+  email
+  isVerified
+  createdAt
+  updatedAt
+}

@@ -6,10 +6,7 @@
     "emitDeclarationOnly": false,
     "importHelpers": true,
     "isolatedModules": true,
-    "lib": [
-      "es2022",
-      "esnext.asynciterable"
-    ],
+    "lib": ["es2022", "esnext.asynciterable"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmitOnError": true,
@@ -22,27 +19,23 @@
     "strict": true,
     "target": "es2022",
     "paths": {
-      "@full-stack-nestjs-template/nestjs-graphql": [
-        "libraries/nestjs-graphql/src/index.ts"
+      "@agency-quest/nestjs-graphql": ["libraries/nestjs-graphql/src/index.ts"],
+      "@agency-quest/nestjs-microservices": [
+        "libraries/nestjs-microservices/src/index.ts"
       ],
-      "@full-stack-nestjs-template/ng-apollo": [
-        "libraries/ng-apollo/src/index.ts"
+      "@agency-quest/nestjs-mongodb": ["libraries/nestjs-mongodb/src/index.ts"],
+      "@agency-quest/nestjs-users-service": [
+        "microservices/users/src/index.ts"
       ],
-      "@full-stack-nestjs-template/ng-cdk": [
-        "libraries/ng-cdk/src/index.ts"
-      ],
-      "@full-stack-nestjs-template/ng-landing-page": [
+      "@agency-quest/ng-apollo": ["libraries/ng-apollo/src/index.ts"],
+      "@agency-quest/ng-cdk": ["libraries/ng-cdk/src/index.ts"],
+      "@agency-quest/ng-landing-page": [
         "libraries/ng-landing-page/src/index.ts"
       ],
-      "@full-stack-nestjs-template/ng-storybook": [
-        "libraries/ng-storybook/src/index.ts"
-      ],
-      "@full-stack-nestjs-template/sdk": [
-        "libraries/sdk/src/index.ts"
-      ],
-      "@full-stack-nestjs-template/storybook": [
-        "domains/design-system/src/index.ts"
-      ]
+      "@agency-quest/ng-storybook": ["libraries/ng-storybook/src/index.ts"],
+      "@agency-quest/ng-testing": ["libraries/ng-testing/src/index.ts"],
+      "@agency-quest/sdk": ["libraries/sdk/src/index.ts"],
+      "@agency-quest/storybook": ["domains/design-system/src/index.ts"]
     },
     "allowSyntheticDefaultImports": true
   }

@@ -1,18 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SayHelloGQL } from '@full-stack-nestjs-template/ng-apollo';
+import { UpsertUserForm } from './forms/upsert-user/upsert-user.form';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { GetAllUsersGQL } from '@agency-quest/ng-apollo';
 
 @Component({
-  imports: [RouterModule],
+  imports: [RouterModule, UpsertUserForm],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'dashboard';
-  sayHello = inject(SayHelloGQL);
 
-  constructor() {
-    this.sayHello.fetch().subscribe()
-  }
+  protected readonly users = toSignal(inject(GetAllUsersGQL).watch({}, {fetchPolicy: 'network-only'}).valueChanges)
 }

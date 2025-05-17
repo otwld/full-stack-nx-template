@@ -1,0 +1,12 @@
+{
+  "name": "helm-stack",
+  "projectType": "library",
+  "root": "helm/stack",
+  "sourceRoot": "helm/stack",
+  "targets": {
+    "helm-lint": {},
+    "helm-package": {},
+    "helm-push": {}
+  },
+  "tags": []
+}

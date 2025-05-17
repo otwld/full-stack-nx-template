@@ -1,13 +1,8 @@
 import type { CodegenConfig } from '@graphql-codegen/cli';
 
-const GRAPHQL_ENDPOINT = process.env['GRAPHQL_ENDPOINT'];
-if (!GRAPHQL_ENDPOINT)
-  throw new Error(
-    '[Codegen]: Expected environment variable GRAPHQL_ENDPOINT to be set.',
-  );
 
 const config: CodegenConfig = {
-  schema: GRAPHQL_ENDPOINT,
+  schema: 'http://localhost:3000/graphql',
   documents: './src/**/*.graphql',
   generates: {
     './src/lib/generated.ts': {
